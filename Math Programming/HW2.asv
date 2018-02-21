@@ -1,0 +1,12 @@
+x = [0:0.05:5];
+
+%Question #1
+fx = x.^2 - 10*sqrt(x) + 2;
+plot(f);
+
+%Question #2
+x = [0:.05:10];
+f2x = (x.^2).*(exp(x));
+df2x = x.*(2)
+plot(f2);
+
