@@ -1,3 +1,7 @@
+% Maxwell L Greene
+% 2/21/2018
+%Script for generating figures, Homework #2
+
 %Question #1
 x = linspace(0,5);
 fx = (x.^2) - (10*(sqrt(x))) + 2;
@@ -14,7 +18,7 @@ Q2Plot = figure('Name','Question #2'); figure(Q2Plot);
 plot(x2,f2x,'-r',x2,df2x,'--b');
 
 %Question #3
-t = linspace(0,pi);
+t = linspace(0,pi,500);
 x = (.7)*sin(10*t);
 y = (1.2)*sin(8*t);
 
@@ -68,3 +72,5 @@ Q7Plot = figure('Name','Question#7'); figure(Q7Plot);
 Q7Histogram = histogram(NormList);
 Q7Histogram.NumBins = 20;
 title('Random Distibution Between -1000,1000');
+
+save('HW2 Data');

@@ -1,0 +1,196 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>kinScript</title><meta name="generator" content="MATLAB 9.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-02-21"><meta name="DC.source" content="kinScript.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="comment">% Jason M Graham</span>
+<span class="comment">% 02/20/2018</span>
+<span class="comment">% A simple script that computes with kinematic equations</span>
+<span class="comment">% recall that y = at^2 + bt + c</span>
+<span class="comment">% is the kinematic equation for position y as a function of time t</span>
+<span class="comment">% where a = constant acceleration</span>
+<span class="comment">% b = initial speed</span>
+<span class="comment">% c = initial position</span>
+
+<span class="comment">% close plot windows and clear workspace</span>
+<span class="comment">% close all</span>
+<span class="comment">% clear all</span>
+
+<span class="comment">% Parameters</span>
+a = -0.98; <span class="comment">% acceleration</span>
+b = 3.25;  <span class="comment">% initial speed</span>
+c = 8.3;   <span class="comment">% initial position</span>
+t = 12.3;  <span class="comment">% a time value</span>
+y = a*t^2 + b*t + c; <span class="comment">% the equation for position</span>
+
+<span class="comment">% Let's work with user defined input</span>
+t = input(<span class="string">'Input a time at which to calculate y '</span>);
+<span class="comment">% calculation based on user input</span>
+y = a*t^2 + b*t + c;
+<span class="comment">% display the result</span>
+disp([<span class="string">'Position at time t= '</span>,num2str(t),<span class="string">' is y= '</span>,num2str(y), <span class="string">'.'</span>])
+
+<span class="comment">% Let's also out put the corresponding speed v = 2*a*t + b</span>
+v = 2*a*t + b; <span class="comment">% speed as a function of time</span>
+disp([<span class="string">'The speed at time t= '</span>,num2str(t),<span class="string">' is v= '</span>,num2str(v), <span class="string">'.'</span>])
+
+<span class="comment">% Recall that the time at which the position y is maximized is t = -b/(2*a)</span>
+tMax = -b/(2*a);
+yMax = a*tMax^2 + b*tMax + c; <span class="comment">% the equation for maximum position</span>
+disp([<span class="string">'The max position is at time tMax= '</span>,num2str(tMax),<span class="string">' is xMax= '</span>,num2str(yMax), <span class="string">'.'</span>])
+
+<span class="comment">% We should make a plot of the position as a function of time</span>
+<span class="comment">% We will ask for a final time value</span>
+tf = input(<span class="string">'Input a final time value (&gt;0) at which to calculate y '</span>);
+
+t = linspace(0,tf,101);  <span class="comment">% time interval with 101 points</span>
+y = a*t.^2 + b*t + c; <span class="comment">% note that this is vectorized where necessary</span>
+plot(t,y,<span class="string">'LineWidth'</span>,2)
+title([<span class="string">'Position y(t) = a*t^2 + b*t + c with a= '</span>,num2str(a),<span class="string">', b= '</span>,num2str(b),<span class="string">', c= '</span>,num2str(c)])
+axis([0 tf 0 yMax + 1])
+xlabel(<span class="string">'time (t)'</span>)
+ylabel(<span class="string">'position (y)'</span>)
+
+<span class="comment">% add the point of max position</span>
+hold <span class="string">on</span>
+plot(tMax,yMax,<span class="string">'*r'</span>,<span class="string">'MarkerSize'</span>,10)
+txt1 = [<span class="string">'\leftarrow Maximum position= '</span>,num2str(yMax)];
+text(tMax,yMax,txt1,<span class="string">'HorizontalAlignment'</span>,<span class="string">'left'</span>)
+
+<span class="comment">% we may want to save our data to work with later</span>
+<span class="comment">%file = '~/Documents/MATLAB/data.mat';</span>
+<span class="comment">%file = 'C:\Users\grahamj7\Documents\MATLAB\data.mat';</span>
+<span class="comment">%save(file,'t','y');</span>
+<span class="comment">%disp(['Data is saved as ',file])</span>
+</pre><pre class="codeoutput error">Error using input
+Cannot call INPUT from EVALC.
+
+Error in kinScript (line 22)
+t = input('Input a time at which to calculate y ');
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+% Jason M Graham
+% 02/20/2018
+% A simple script that computes with kinematic equations
+% recall that y = at^2 + bt + c
+% is the kinematic equation for position y as a function of time t
+% where a = constant acceleration
+% b = initial speed
+% c = initial position 
+
+% close plot windows and clear workspace
+% close all
+% clear all
+
+% Parameters
+a = -0.98; % acceleration 
+b = 3.25;  % initial speed
+c = 8.3;   % initial position
+t = 12.3;  % a time value
+y = a*t^2 + b*t + c; % the equation for position 
+
+% Let's work with user defined input
+t = input('Input a time at which to calculate y ');
+% calculation based on user input
+y = a*t^2 + b*t + c;
+% display the result 
+disp(['Position at time t= ',num2str(t),' is y= ',num2str(y), '.'])
+
+% Let's also out put the corresponding speed v = 2*a*t + b
+v = 2*a*t + b; % speed as a function of time 
+disp(['The speed at time t= ',num2str(t),' is v= ',num2str(v), '.'])
+
+% Recall that the time at which the position y is maximized is t = -b/(2*a)
+tMax = -b/(2*a);
+yMax = a*tMax^2 + b*tMax + c; % the equation for maximum position
+disp(['The max position is at time tMax= ',num2str(tMax),' is xMax= ',num2str(yMax), '.'])
+
+% We should make a plot of the position as a function of time
+% We will ask for a final time value
+tf = input('Input a final time value (>0) at which to calculate y ');
+
+t = linspace(0,tf,101);  % time interval with 101 points
+y = a*t.^2 + b*t + c; % note that this is vectorized where necessary
+plot(t,y,'LineWidth',2)
+title(['Position y(t) = a*t^2 + b*t + c with a= ',num2str(a),', b= ',num2str(b),', c= ',num2str(c)])
+axis([0 tf 0 yMax + 1])
+xlabel('time (t)')
+ylabel('position (y)')
+
+% add the point of max position
+hold on
+plot(tMax,yMax,'*r','MarkerSize',10)
+txt1 = ['\leftarrow Maximum position= ',num2str(yMax)];
+text(tMax,yMax,txt1,'HorizontalAlignment','left')
+
+% we may want to save our data to work with later
+%file = '~/Documents/MATLAB/data.mat';
+%file = 'C:\Users\grahamj7\Documents\MATLAB\data.mat';
+%save(file,'t','y');
+%disp(['Data is saved as ',file])
+
+##### SOURCE END #####
+--></body></html>
