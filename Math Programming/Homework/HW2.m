@@ -72,5 +72,3 @@ Q7Plot = figure('Name','Question#7'); figure(Q7Plot);
 Q7Histogram = histogram(NormList);
 Q7Histogram.NumBins = 20;
 title('Random Distibution Between -1000,1000');
-
-save('HW2 Data');
