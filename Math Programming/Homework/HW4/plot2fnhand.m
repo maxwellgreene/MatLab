@@ -1,4 +1,4 @@
-function null = plot2fnhand(function1,function2)
+function plot2fnhand(function1,function2)
 
 n = randi([4,10],1);
 
