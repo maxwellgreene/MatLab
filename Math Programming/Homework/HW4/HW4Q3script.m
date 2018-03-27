@@ -26,3 +26,16 @@ df2dx = FoPtder(Q3funcb,a,h2);
 
 HW4Q3BPlot = figure('Name','Question #3b'); figure(HW4Q3BPlot);
 plot(x,f2,a,df1dx,'*r',a,df2dx,'*b');
+
+%C) 
+%See "approxDerivWRange.m" for function. 
+%I call it here to show it works and for ease of use.
+
+%Arbitrary Values:
+f3 = @(x) x.^2;
+x0 = 0;
+x1 = 5;
+
+approxderivWRange(f3,x0,x1);
+
+
