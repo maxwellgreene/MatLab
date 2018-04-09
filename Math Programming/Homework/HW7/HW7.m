@@ -24,7 +24,7 @@ y2 = f(x2);
 zero2 = 0.*x2;
 figure(); plot(x2,y2,x2,zero2);
 
-disp(['This function has 2 solutions.']);
+disp([' This function has 2 solutions.']);
 
     %Now that we have a good idea of where the two zero values are, we isolate
     %them...
@@ -34,14 +34,14 @@ y3 = f(x3);
 zero3 = 0.*x3;
 figure(); plot(x3,y3,x3,zero3);
 fzero3_4 = fzero(f,3);
-disp(['f(x) = 0 at x = ' , num2str(fzero3_4)]);
+disp(['  f(x) = 0 at x = ' , num2str(fzero3_4)]);
 
 x4 = linspace(7,8,101);
 y4 = f(x4);
 zero4 = 0.*x4;
 figure(); plot(x4,y4,x4,zero4);
 fzero7_8 = fzero(f,7);
-disp(['f(x) = 0 at x = ' , num2str(fzero7_8)]);
+disp(['  f(x) = 0 at x = ' , num2str(fzero7_8)]);
 
 %%
 %Question #2
@@ -58,7 +58,7 @@ figure(); plot(x,y,x,zero);
 fzeroN1 = fzero(f2,-1);
 fzero0 = fzero(f2,0);
 fzero2 = fzero(f2,2);
-disp(['The three roots of this function are ',num2str(fzeroN1),', ',num2str(fzero0),', and ',num2str(fzero2),'.']);
+disp([' The three roots of this function are ',num2str(fzeroN1),', ',num2str(fzero0),', and ',num2str(fzero2),'.']);
 
 %%
 %Question #3
@@ -73,33 +73,41 @@ figure(); plot(x,y,x,zero);
 
 % Apparent local minima at 0<x<5, local maxima at -5<x<0.
 
-disp(['The function has apperant maximum on interval -5<x<0']);
-disp([' and mimimum on interval 0<x<5.']);
+disp([' The function has apperant maximum on interval -5<x<0']);
+disp(['  and mimimum on interval 0<x<5.']);
 %find exact max/min with fmin
 
 fmaxN5_0 = fminbnd(f3N,-5,0);
 fmin0_5 = fminbnd(f3,0,5);
 
-disp(['The function has local maximum at x = ',num2str(fmaxN5_0)]);
-disp([' and local minimum at x = ',num2str(fmin0_5)]);
+disp([' The function has local maximum at x = ',num2str(fmaxN5_0)]);
+disp(['  and local minimum at x = ',num2str(fmin0_5)]);
 
 %%
 %Question #4
 disp(['Question #4']);
-fa = @(x) (x.^3.*exp(-.2.*x))/(1+x.^2);
-
-intA = quadl(fa,1,11);
 
 %Part a
 disp([' Part A']);
+fa = @(x) (x.^3.*exp(-.2.*x))./(1+x.^2);
+intA = quadl(fa,1,11);
+disp(['  Integral from 1 to 11 is ',num2str(intA)]);
 
 %Part b
 disp([' Part B']);
+fb = @(x) (4.*x+3.*cos(4.*x))./(2+sin(x));
+intB = quadl(fb,2,7);
+disp(['  Integral from 2 to 7 is ',num2str(intB)]);
 
 %Part c
 disp([' Part C']);
+fc = @(x) sqrt(1+.5.*x.^3-x.^2);
+intC = quadl(fc,0,3);
+disp(['  Integral from 0 to 3 is ',num2str(intC)]);
 
 %Part d
 disp([' Part D']);
-
+fd = @(x) (2.*x.^2+x.*cos(x))./(exp(x));
+intD = quadl(fd,0,8);
+disp(['  Integral from 0 to 8 is ',num2str(intD)]);
 
