@@ -41,7 +41,12 @@ e1 = speedError(g);
 disp(['Error in speed function for a = ',num2str(a),' and b = ',num2str(b),' is err = ',num2str(e1)])
 
 % minimize error function to obtain best fit parameters
+
+
+%Gradient Descent function
 X = fminsearch(@speedError,g);
+
+
 a = X(1);
 b = X(2);
 % evaluate best fit model
