@@ -1,15 +1,15 @@
-function error = errorFunc(guess)
-    global gData = csvread('gData.csv');
-     global gData(:,2);
+function error = ExpError(guess)
+    global gData;
+    data = gData(:,2);
     x = gData(:,1);
     [dataSize,~] = size(data);
-    [~,aSize] = size(guess);
+    [~,guessSize] = size(guess);
     value = zeros(size(x));
     
     for j = 1:dataSize
-        for i = 1:aSize
+        for i = 1:guessSize
             value(j) = value(j) + guess(i).*(x(j).^(i-1));
         end
     end
-    error = norm(value-data)^2;
+    error = norm(value-data).^2;
 end

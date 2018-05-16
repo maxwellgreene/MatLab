@@ -1,25 +1,21 @@
-%Final Project
+%Final Project - gdata
 %Maxwell Greene
 %% VARIABLE DEFINITION
 
-global sData gData speedData;
-sData = csvread('SData//sData.csv');
-gData = csvread('GData//gData.csv');
-speedData = csvread('speedData//speedData.csv');
+global gData;
+gData = csvread('gData.csv');
 
 %% PLOT INITIAL DATA
 %Initial data plot of data
 figure('Name','Plot of data'); hold on;
-plot(sData(:,1),sData(:,2),'.r');
 plot(gData(:,1),gData(:,2),'ob');
-plot(speedData(:,1),speedData(:,2),'*g');
 
 %% GET USER INPUT FOR DEGREE AND GUESSES
 
-evalNum = input('Evaluate error at which exponent of x?');
+evalNum = input('Evaluate error with what degree polynomial?  ');
 A = zeros(1,evalNum);
 
-guessbool = input('Would you like to make a guess?');
+guessbool = input('Would you like to make a guess? (1/0)  ');
 if guessbool == true
     
     for i = 1:evalNum+1
@@ -35,7 +31,7 @@ if guessbool == true
 end
 %% CALCULATE OPTIMIZED VALUES
 
-x0 = zeros(evalNum+1);
+x0 = zeros(1,evalNum+1);
 optInputs = fminsearch(@ExpError,x0);
 [optError,optValue] = ExpEval(gData(:,1),gData(:,2),optInputs);
 disp(['Error for optimization of x^',num2str(evalNum),': ',num2str(optError)]);
@@ -43,7 +39,7 @@ disp(['Error for optimization of x^',num2str(evalNum),': ',num2str(optError)]);
 %Display optimum values
 disp('Your optimum values were:');
 for i=1:evalNum+1
-   disp(['A(',num2str(i),') = ',num2str(optInputs(i))]);
+   disp(['A(',num2str(i),') = ',num2str(optValue(i))]);
 end
 
 figure('Name',['Plot of evaluation of optimization with degree ',num2str(evalNum)]);
